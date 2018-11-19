@@ -6,7 +6,7 @@ MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
-INTENT_START = "bezzam:start_mental_calculation"
+INTENT_START = "bezzam:start_mental_calculations"
 INTENT_ANSWER = "bezzam:give_mental_calculation"
 INTENT_STOP = "bezzam:stop_lesson"
 INTENT_DOES_NOT_KNOW = "bezzam:does_not_know_calculation"
@@ -55,8 +55,17 @@ def continue_lesson(response, session_id):
     SessionsStates[session_id]["step"] += 1
 
     if SessionsStates[session_id]["step"] == SessionsStates[session_id]["n_questions"]:
-        response += "You had {} correct answers out of {} questions.".format(SessionsStates[session_id]["good"],
+        response += "You had {} correct answers out of {} questions. ".format(SessionsStates[session_id]["good"],
                                                                              SessionsStates[session_id]["n_questions"])
+        percent_correct = float(SessionsStates[session_id]["good"]) / SessionsStates[session_id]["n_questions"]
+        if percent_correct == 1.:
+            response += "You are so smart!"
+        elif percent_correct >= 0.75:
+            response += "Well done! With a bit more practice you'll be a master."
+        elif percent_correct >= 0.5:
+            response += "Good job. With more practice, you'll get better."
+        else:
+            response += "You should really practice more."
         del SessionsStates[session_id]
         cont = False
     else:
