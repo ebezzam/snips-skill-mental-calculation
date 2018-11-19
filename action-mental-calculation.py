@@ -55,7 +55,7 @@ def continue_lesson(response, session_id):
     SessionsStates[session_id]["step"] += 1
 
     if SessionsStates[session_id]["step"] == SessionsStates[session_id]["n_questions"]:
-        response += "You had {} correct answers out of {} questions. ".format(SessionsStates[session_id]["good"],
+        response += "You had {} out of {} correct. ".format(SessionsStates[session_id]["good"],
                                                                              SessionsStates[session_id]["n_questions"])
         percent_correct = float(SessionsStates[session_id]["good"]) / SessionsStates[session_id]["n_questions"]
         if percent_correct == 1.:
@@ -63,7 +63,7 @@ def continue_lesson(response, session_id):
         elif percent_correct >= 0.75:
             response += "Well done! With a bit more practice you'll be a master."
         elif percent_correct >= 0.5:
-            response += "Good job. With more practice, you'll get better."
+            response += "Not bad. With more practice, you'll get better."
         else:
             response += "You should really practice more."
         del SessionsStates[session_id]
@@ -81,8 +81,14 @@ def user_request_quiz(hermes, intent_message):
     session_id = intent_message.session_id
 
     # parse input message
-    n_questions = intent_message.slots.n_questions.first().value
-    response = "Starting a lesson with {} questions. ".format(n_questions)
+    n_questions = int(intent_message.slots.n_questions.first().value)
+    if n_questions > 1:
+        response = "Starting a lesson with {} questions. ".format(n_questions)
+    elif n_questions == 1:
+        response = "Starting a lesson with one question. "
+    else:
+        response = "I can only give a positive number of questions."
+        hermes.publish_end_session(session_id, response)
 
     # create first question
     question, answer = create_question()
