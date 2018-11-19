@@ -6,10 +6,10 @@ MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
-INTENT_START = "start_mental_calculation"
-INTENT_ANSWER = "give_mental_calculation"
-INTENT_STOP = "stop_lesson"
-INTENT_DOES_NOT_KNOW = "does_not_know_calculation"
+INTENT_START = "bezzam:start_mental_calculation"
+INTENT_ANSWER = "bezzam:give_mental_calculation"
+INTENT_STOP = "bezzam:stop_lesson"
+INTENT_DOES_NOT_KNOW = "bezzam:does_not_know_calculation"
 
 INTENT_FILTER_GET_ANSWER = [
     INTENT_ANSWER,
@@ -73,7 +73,7 @@ def user_request_quiz(hermes, intent_message):
 
     # parse input message
     n_questions = intent_message.slots.n_questions.first().value
-    response = "Hi there, starting a lesson with {} questions. ".format(n_questions)
+    response = "Starting a lesson with {} questions. ".format(n_questions)
 
     # create first question
     question, answer = create_question()
@@ -88,7 +88,7 @@ def user_request_quiz(hermes, intent_message):
     }
     SessionsStates[session_id] = session_state
 
-    hermes.publish_continue_session(intent_message.session_id, response + question, INTENT_FILTER_GET_ANSWER)
+    hermes.publish_continue_session(session_id, response + question, INTENT_FILTER_GET_ANSWER)
 
 
 def user_gives_answer(hermes, intent_message):
