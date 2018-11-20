@@ -1,9 +1,9 @@
-# Mental Calculation Quiz
+# Mental Calculation Quiz Workshop
 
 Largely inspired by the [times tables quiz](https://github.com/snipsco/snips-skill-times-tables-quiz), this skill poses simple 
 arithmetic questions to test basic addition, subtraction, multiplication, and division.
 
-The implementation of this App is the focus for the workshop given at LauzHack.
+The implementation of this App is the focus for a workshop given at LauzHack Days.
 
 This action code will hopefully serve as a useful reference for others to create their own Apps! We first describe how you
 can deploy this App to a Raspberry Pi. Further below we describe some key ingredients when writing your own action code.
@@ -17,8 +17,31 @@ For installing an Assistant, it is recommended to use [SAM](https://snips.gitboo
 into your board frequently and copying files back and forth.
 
 The assistant for this workshop can be downloaded [here](https://drive.google.com/open?id=1QAw0ORDti716hzjnm_hTqcuNUDVxVW_s).
-Whether or not you have SAM, you can find instructions for deploying the assistant on the Snips [official documentation](https://snips.gitbook.io/documentation/console/deploy-your-assistant).
 The steps for creating this assistant can be found on [these slides](https://drive.google.com/open?id=12ocdhbtRjezviWVz_5yW6eiNuWgcr7GI7AYnykSi290).
+Whether or not you have SAM, you can find instructions for deploying the assistant on the Snips [official documentation](https://snips.gitbook.io/documentation/console/deploy-your-assistant).
+For completeness, we provide the steps for installing the assistant _if you do not have SAM_:
+
+1. Go to where the ZIP file was downloaded and copy it to the Raspberry Pi:
+    ```bash
+    $ scp assistant_proj_o8AM7O4ormk.zip pi@<pi-name>.local:~
+    ```
+2. SSH into your board:
+    ```bash
+    $ ssh pi@<pi-name>.local
+    ```
+    From now on, the specified commands are to be ran on the Raspberry Pi, unless we specify otherwise.
+3. Delete the previous assistant if there is one.
+    ```bash
+    $ sudo rm -rf /usr/share/snips/assistant/
+    ```
+4. Unzip the new Assistant in the following folder:
+    ```bash
+    $ sudo unzip assistant_proj_o8AM7O4ormk.zip -d /usr/share/snips/
+    ```
+5. The Assistant is now installed. Relaunch the various Snips components with the following command:
+    ```bash
+    $ sudo systemctl restart 'snips-*'
+    ```
 
 Finally, we need to add the action code for our Assistant, in particular for the our Mental Calculation App. 
 [Here](https://snips.gitbook.io/documentation/console/deploying-your-skills) you can find steps for deploying 
