@@ -131,7 +131,7 @@ def user_gives_answer(hermes, intent_message):
 def user_does_not_know(hermes, intent_message):
     session_id = intent_message.session_id
 
-    response = "That's quite alright! The answer is {}.".format(SessionsStates[session_id]["ans"])
+    response = "That's quite alright! The answer is {}. ".format(SessionsStates[session_id]["ans"])
 
     # create new question or terminate if reached desired number of questions
     response, cont = continue_lesson(response, session_id)
