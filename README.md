@@ -29,11 +29,11 @@ Raspberry Pi):
     ```bash
     $ scp assistant_proj_o8AM7O4ormk.zip pi@<pi-name>.local:~
     ```
-2. SSH into your board:
+2. SSH into your board. Default password is `raspberry`:
     ```bash
     $ ssh pi@<pi-name>.local
     ```
-    **From now on, the specified commands are to be ran on the Raspberry Pi.**
+    **From now on, the specified commands should be executed on the Raspberry Pi.**
 3. Delete the previous assistant if there is one.
     ```bash
     $ sudo rm -rf /usr/share/snips/assistant/
@@ -181,7 +181,21 @@ When coding interactions that involve storing some sort of status, it is useful 
 to keep track of a session's status!
 
 
-## Setting up your Pi on a local network
+## Setting up Snips on your Pi
+
+Here are some pointers, if you are not working with a pre-assembled Maker Kit, as would be provided at a workshop.
+
+The overall steps, as described in more detail [here](https://snips.gitbook.io/documentation/installing-snips/on-a-raspberry-pi)
+are:
+
+1. Flash an SD card with Raspbian Stretch Lite, e.g. using [Etcher](https://www.raspberrypi.org/documentation/installation/installing-images/)
+2. Enable SSH by adding an empty `ssh` file at the root of the `boot` volume on your SD card.
+3. Configure network access: you can simply connect with an Ethernet cable or for WiFi edit the `etc/wpa_supplicant/wpa_supplicant.conf` file (after SSH'ing). More details below.
+4. Install the Snips Platform by running [these commands](https://www.raspberrypi.org/documentation/installation/installing-images/).
+5. [Configure audio](https://www.raspberrypi.org/documentation/installation/installing-images/). This can also be done
+with SAM: `sam setup audio`.
+
+#### More on connecting to local network
 
 See [here](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) for instructions.
 The easiest way is to use the command line raspi-config tool:
