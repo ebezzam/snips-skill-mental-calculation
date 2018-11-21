@@ -3,7 +3,7 @@
 Largely inspired by the [times tables quiz](https://github.com/snipsco/snips-skill-times-tables-quiz), this skill poses simple 
 arithmetic questions to test basic addition, subtraction, multiplication, and division.
 
-The implementation of this App is the focus for a workshop given at LauzHack Days.
+The implementation of this App was developed for a workshop given at LauzHack Days.
 
 This action code will hopefully serve as a useful reference for others to create their own Apps! We first describe how you
 can deploy this App to a Raspberry Pi. Further below we describe some key ingredients when writing your own action code.
@@ -16,12 +16,16 @@ can also consist of a single App, as is done in this workshop.
 For installing an Assistant, it is recommended to use [SAM](https://snips.gitbook.io/getting-started/installation) so that you can avoid SSH'ing
 into your board frequently and copying files back and forth.
 
+
+#### Installing the Assistant for this workshop
+
 The assistant for this workshop can be downloaded [here](https://drive.google.com/open?id=1QAw0ORDti716hzjnm_hTqcuNUDVxVW_s).
 The steps for creating this assistant can be found on [these slides](https://drive.google.com/open?id=12ocdhbtRjezviWVz_5yW6eiNuWgcr7GI7AYnykSi290).
 Whether or not you have SAM, you can find instructions for deploying the assistant on the Snips [official documentation](https://snips.gitbook.io/documentation/console/deploy-your-assistant).
 For completeness, we provide the steps for installing the assistant _if you do not have SAM_:
 
-1. Go to where the ZIP file was downloaded and copy it to the Raspberry Pi:
+1. Go to where the ZIP file was downloaded and copy it to the Raspberry Pi (change `<pi-name>` with the name of your
+Raspberry Pi):
     ```bash
     $ scp assistant_proj_o8AM7O4ormk.zip pi@<pi-name>.local:~
     ```
@@ -29,7 +33,7 @@ For completeness, we provide the steps for installing the assistant _if you do n
     ```bash
     $ ssh pi@<pi-name>.local
     ```
-    From now on, the specified commands are to be ran on the Raspberry Pi, unless we specify otherwise.
+    **From now on, the specified commands are to be ran on the Raspberry Pi.**
 3. Delete the previous assistant if there is one.
     ```bash
     $ sudo rm -rf /usr/share/snips/assistant/
@@ -42,8 +46,10 @@ For completeness, we provide the steps for installing the assistant _if you do n
     ```bash
     $ sudo systemctl restart 'snips-*'
     ```
+    
+#### Installing the action code for our App
 
-Finally, we need to add the action code for our Assistant, in particular for the our Mental Calculation App. 
+Finally, we need to add the action code for our Mental Calculations App in the Assistant, in particular for the our Mental Calculation App. 
 [Here](https://snips.gitbook.io/documentation/console/deploying-your-skills) you can find steps for deploying 
 your Apps with or without SAM. If you don't have SAM, you will need two Snips program (`snips-template` and 
 `snips-skill-server`) and `virtualenv` on your board as described [here](https://snips.gitbook.io/documentation/console/deploying-your-skills#prerequisite).
@@ -65,6 +71,11 @@ application code.
 4. Clone the repository to this folder.
     ```bash
     $ git clone https://github.com/ebezzam/snips-skill-mental-calculation.git
+    ```
+4. Enter the repository and setup the virtual environment:
+    ```bash
+    $ cd snips-skill-mental-calculation
+    $ ./setup.sh
     ```
 5. Restart `snips-skill-server` to launch the new App:
     ```bash
@@ -159,12 +170,61 @@ take as arguments:
     `hermes.publish_continue_session` could also take a list of potential intents that could follow after the given 
     detected intent. In this example, after starting the lesson (`INTENT_START`), the session could continue to one of 
     three possibilities:
-    1. INTENT_ANSWER
-    2. INTENT_DOES_NOT_KNOW
-    3. INTENT_STOP
+    1. `INTENT_ANSWER`
+    2. `INTENT_DOES_NOT_KNOW`
+    3. `INTENT_STOP`
     
     For this reason, we pass a list of these three intents to `hermes.publish_continue_session` (Line 106).
  
 When coding interactions that involve storing some sort of status, it is useful to define a dictionary, e.g. 
 `SessionsStates` in this example, where the key is the session ID. Remember to delete entries when you no longer need
 to keep track of a session's status!
+
+
+## Setting up your Pi on a local network
+
+See [here](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) for instructions.
+The easiest way is to use the command line raspi-config tool:
+```bash
+$ sudo raspi-config
+```
+
+For getting on a WPA2 Enterprise network like `eduroam`, you will have to dig a bit deeper. Edit the following file:
+```bash
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+```
+
+And add the following content (e.g. for EPFL):
+```
+ctrl_interface=/var/run/wpa_supplicant
+network={
+    ssid="eduroam"      # or "epfl"
+    key_mgmt=WPA-EAP
+    proto=WPA2
+    eap=PEAP
+    identity="gaspar@epfl.ch"
+    password="my_password"
+    anonymous_identity="anonymous@epfl.ch"
+    phase2="auth=MSCHAPV2"
+    ca_cert="/etc/ssl/certs/thawte_Primary_Root_CA.pem"
+    subject_match="CN=radius.epfl.ch"
+    priority=8
+}
+```
+
+Protect your file with the rights 600. (read/write for root only)
+```bash
+$ chmod 600 /etc/wpa_supplicant/wpa_supplicant.conf
+```
+
+The following command starts the WPA supplicant (check the name of the interface)
+```bash
+$ wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -i wlan0
+```
+
+The following command starts the dhcp
+```bash
+$ dhclient wlan0
+```
+
+For more info, see [here](https://epnet.epfl.ch/files/content/sites/network/files/Download/WIFI/linux_en.pdf).
