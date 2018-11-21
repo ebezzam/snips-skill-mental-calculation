@@ -3,7 +3,9 @@
 Largely inspired by the [times tables quiz](https://github.com/snipsco/snips-skill-times-tables-quiz), this skill poses simple 
 arithmetic questions to test basic addition, subtraction, multiplication, and division.
 
-The implementation of this App was developed for a workshop given at LauzHack Days.
+The implementation of this App was developed for a workshop given at LauzHack Days. In the workshop,
+we complete [`INCOMPLETE_action-mental-calculation.py`](INCOMPLETE_action-mental-calculation.py) in order to obtain the
+working code in [`action-mental-calculation.py`](action-mental-calculation.py).
 
 This action code will hopefully serve as a useful reference for others to create their own Apps! We first describe how you
 can deploy this App to a Raspberry Pi. Further below we describe some key ingredients when writing your own action code.
@@ -47,7 +49,7 @@ Raspberry Pi):
     $ sudo systemctl restart 'snips-*'
     ```
     
-#### Installing the action code for our App
+#### Installing the Action code for our App
 
 Finally, we need to add the action code for our Mental Calculations App in the Assistant, in particular for the our Mental Calculation App. 
 [Here](https://snips.gitbook.io/documentation/console/deploying-your-skills) you can find steps for deploying 
@@ -95,7 +97,7 @@ the action code is "erroring out" due to possible bugs in the Python code. Other
 errors include not typing the correct intent names (which means you aren't subscribing to the 
 intents you want) and similarly not including the correct `username` in the intent names.
 
-## Essentials when creating your own action
+## Essentials when creating your own Action
 
 - Your action scripts must begin with `action-*`.
 - Create a `requirements.txt` and `setup.sh` file as the ones in this repo.
@@ -105,7 +107,7 @@ chmod +x action-*.py
 chmod +x setup.sh
 ```
 
-## Good practices when coding your own action
+## Good practices when coding your own Action
 
 Essentially all scripts should start off like so (with the additonal libraries that you requires for your 
 application):
