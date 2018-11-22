@@ -3,12 +3,15 @@
 Largely inspired by the [times tables quiz](https://github.com/snipsco/snips-skill-times-tables-quiz), this skill poses simple 
 arithmetic questions to test basic addition, subtraction, multiplication, and division.
 
-The implementation of this App was developed for a workshop given at LauzHack Days. In the workshop,
-we complete [`INCOMPLETE_action-mental-calculation.py`](INCOMPLETE_action-mental-calculation.py) in order to obtain the
-working code in [`action-mental-calculation.py`](action-mental-calculation.py).
+The implementation of this App was developed for a [workshop](https://drive.google.com/open?id=12ocdhbtRjezviWVz_5yW6eiNuWgcr7GI7AYnykSi290)
+given at LauzHack Days. In the workshop, we first create an Assistant and a Mental Calculation App from the
+[Snips Console](http://console.snips.ai). We then complete [`INCOMPLETE_action-mental-calculation.py`](INCOMPLETE_action-mental-calculation.py)
+in order to obtain the working code in [`action-mental-calculation.py`](action-mental-calculation.py).
 
-This action code will hopefully serve as a useful reference for others to create their own Apps! We first describe how you
-can deploy this App to a Raspberry Pi. Further below we describe some key ingredients when writing your own action code.
+This action code will hopefully serve as a useful reference for others to create their own Apps!
+
+Below, we first describe how you can deploy the Assistant (created on the Console) to a Raspberry Pi.
+Further below we describe some key ingredients when writing your own action code.
 
 ## Installing an Assistant and Apps
 
@@ -183,7 +186,7 @@ When coding interactions that involve storing some sort of status, it is useful 
 to keep track of a session's status!
 
 
-## Setting up Snips on your Pi
+## Starting from scratch? Setting up Snips on your Pi
 
 Here are some pointers, if you are not working with a pre-assembled Maker Kit, as would be provided at a workshop.
 
