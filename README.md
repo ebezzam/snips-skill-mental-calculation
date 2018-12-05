@@ -3,9 +3,12 @@
 Largely inspired by the [times tables quiz](https://github.com/snipsco/snips-skill-times-tables-quiz), this skill poses simple 
 arithmetic questions to test basic addition, subtraction, multiplication, and division.
 
-The implementation of this App was developed for a [workshop](https://drive.google.com/open?id=12ocdhbtRjezviWVz_5yW6eiNuWgcr7GI7AYnykSi290)
-given at LauzHack Days. In the workshop, we first create an Assistant and a Mental Calculation App from the
-[Snips Console](http://console.snips.ai). We then complete [`INCOMPLETE_action-mental-calculation.py`](INCOMPLETE_action-mental-calculation.py)
+The workshop slides, which provide a step-by-step tutorial to the [Snips Console](http://console.snips.ai), can be found [**HERE**](https://drive.google.com/open?id=12ocdhbtRjezviWVz_5yW6eiNuWgcr7GI7AYnykSi290).
+
+The implementation of this App was developed for a workshop first given at [LauzHack Days](https://lauzhack.com/workshops). It was then done at LauzHack 2018, Robotex 2018, and ThingsCon 2018. 
+
+In the workshop, we first create an Assistant and a Mental Calculation App from the
+Snips Console. We then complete [`INCOMPLETE_action-mental-calculation.py`](INCOMPLETE_action-mental-calculation.py)
 in order to obtain the working code in [`action-mental-calculation.py`](action-mental-calculation.py).
 
 This action code will hopefully serve as a useful reference for others to create their own Apps!
