@@ -1,15 +1,12 @@
-# Mental Calculation Quiz Workshop
+# Snips Workshop: Mental Calculation Quiz, [slides](https://docs.google.com/presentation/d/1wWKdDGqeQxq_zcfev4gkC_GN9RfRHF9P3BF_8srEfEk/edit#slide=id.g45f62bcbbe_0_65)
 
 Largely inspired by the [times tables quiz](https://github.com/snipsco/snips-skill-times-tables-quiz), this skill poses simple 
 arithmetic questions to test basic addition, subtraction, multiplication, and division.
 
-The workshop slides, which provide a step-by-step tutorial to the [Snips Console](http://console.snips.ai), can be found [**HERE**](https://drive.google.com/open?id=12ocdhbtRjezviWVz_5yW6eiNuWgcr7GI7AYnykSi290).
-
-The implementation of this App was developed for a workshop first given at [LauzHack Days](https://lauzhack.com/workshops). It was then done at LauzHack 2018, Robotex 2018, and ThingsCon 2018. 
+The implementation of this App was developed for a workshop first given at [LauzHack Days](https://lauzhack.com/workshops). It was then done at LauzHack 2018, Robotex 2018, ThingsCon 2018, and Sorbonne HackAIthon 2019. 
 
 In the workshop, we first create an Assistant and a Mental Calculation App from the
-Snips Console. We then complete [`INCOMPLETE_action-mental-calculation.py`](INCOMPLETE_action-mental-calculation.py)
-in order to obtain the working code in [`action-mental-calculation.py`](action-mental-calculation.py).
+[Snips Console](https://console.snips.ai). We then complete [`INCOMPLETE_action-mental-calculation.py`](INCOMPLETE_action-mental-calculation.py) in order to obtain the working code in [`action-mental-calculation.py`](action-mental-calculation.py).
 
 This action code will hopefully serve as a useful reference for others to create their own Apps!
 
@@ -27,15 +24,15 @@ into your board frequently and copying files back and forth.
 
 #### Installing the Assistant for this workshop
 
-The assistant for this workshop can be downloaded [here](https://drive.google.com/open?id=1QAw0ORDti716hzjnm_hTqcuNUDVxVW_s).
-The steps for creating this assistant can be found on [these slides](https://drive.google.com/open?id=12ocdhbtRjezviWVz_5yW6eiNuWgcr7GI7AYnykSi290).
-Whether or not you have SAM, you can find instructions for deploying the assistant on the Snips [official documentation](https://snips.gitbook.io/documentation/console/deploy-your-assistant).
+The assistant for this workshop can be downloaded [here](https://drive.google.com/open?id=14I8lgbawcocoZw-u3fcMQeT42UUajaOs).
+The steps for creating this assistant can be found in [the slides](https://docs.google.com/presentation/d/1wWKdDGqeQxq_zcfev4gkC_GN9RfRHF9P3BF_8srEfEk/edit#slide=id.g45f62bcbbe_0_65).
+Whether or not you have SAM, you can find instructions for deploying the assistant on the Snips [official documentation](https://docs.snips.ai/articles/console/actions/deploying-your-skills).
 For completeness, we provide the steps for installing the assistant _if you do not have SAM_:
 
-1. Go to where the ZIP file was downloaded and copy it to the Raspberry Pi (change `<pi-name>` with the name of your
-Raspberry Pi):
+1. Go to where the ZIP file was downloaded and copy it to the Raspberry Pi (change `<pi-name>` with the hostname of your
+Raspberry Pi or `<pi-name>.local` with its IP address):
     ```bash
-    $ scp assistant_proj_o8AM7O4ormk.zip pi@<pi-name>.local:~
+    $ scp assistant_proj_Y4y2q9exO5b.zip pi@<pi-name>.local:~
     ```
 2. SSH into your board. Default password is `raspberry`:
     ```bash
@@ -58,12 +55,11 @@ Raspberry Pi):
 #### Installing the Action code for our App
 
 Finally, we need to add the action code for our Mental Calculations App in the Assistant, in particular for the our Mental Calculation App. 
-[Here](https://snips.gitbook.io/documentation/console/deploying-your-skills) you can find steps for deploying 
-your Apps with or without SAM. If you don't have SAM, you will need two Snips program (`snips-template` and 
-`snips-skill-server`) and `virtualenv` on your board as described [here](https://snips.gitbook.io/documentation/console/deploying-your-skills#prerequisite).
+[Here](https://docs.snips.ai/articles/console/actions/deploying-your-skills) you can find steps for deploying 
+your Apps with or without SAM. If you don't have SAM, you will need two Snips programs (`snips-template` and 
+`snips-skill-server`) and `virtualenv` on your board as described [here](https://docs.snips.ai/articles/console/actions/deploying-your-skills#prerequisite).
 
-
-For the purpose of this workshop, the instruction below for installing the App assume you don't have SAM (but meet the 
+For the purpose of this workshop, the instructions below for installing the App assume you don't have SAM (but meet the 
 above prerequisites). This workflow is presented as we have found it convenient when developing and debugging your 
 application code.
 
@@ -193,7 +189,7 @@ to keep track of a session's status!
 
 Here are some pointers, if you are not working with a pre-assembled Maker Kit, as would be provided at a workshop.
 
-The overall steps, as described in more detail [here](https://snips.gitbook.io/documentation/installing-snips/on-a-raspberry-pi)
+The overall steps, as described in more detail [here](https://docs.snips.ai/getting-started/quick-start-raspberry-pi)
 are:
 
 1. Flash an SD card with Raspbian Stretch Lite, e.g. using [Etcher](https://www.raspberrypi.org/documentation/installation/installing-images/)
