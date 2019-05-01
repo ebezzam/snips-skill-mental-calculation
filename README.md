@@ -24,7 +24,7 @@ into your board frequently and copying files back and forth.
 
 #### Installing the Assistant for this workshop
 
-The assistant for this workshop can be downloaded [here](https://drive.google.com/open?id=14I8lgbawcocoZw-u3fcMQeT42UUajaOs).
+The assistant for this workshop can be downloaded [here](https://drive.google.com/open?id=1R9cDKaXTYCQQ9kEh-s7WGfeY5yk1rOHF).
 The steps for creating this assistant can be found in [the slides](https://docs.google.com/presentation/d/1wWKdDGqeQxq_zcfev4gkC_GN9RfRHF9P3BF_8srEfEk/edit#slide=id.g45f62bcbbe_0_65).
 Whether or not you have SAM, you can find instructions for deploying the assistant on the Snips [official documentation](https://docs.snips.ai/articles/console/actions/deploying-your-skills).
 For completeness, we provide the steps for installing the assistant _if you do not have SAM_:
